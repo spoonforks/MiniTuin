@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#25392d">
+  <title>MiniTuin</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='27'%3E🌱%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="layout.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main id="garden" aria-label="An interactive miniature backyard">
+    <div class="backyard" aria-hidden="true"></div>
+    <div id="wetness" aria-hidden="true"></div>
+    <div id="sprites" aria-hidden="true"></div>
+    <img id="bee" src="assets/bee.png" alt="" draggable="false" hidden>
+    <canvas id="rain" aria-hidden="true"></canvas>
+    <div id="shade" aria-hidden="true"></div>
+  </main>
+
+  <output id="temperature-display" class="readout temperature" aria-label="Temperature">20<span>°C</span></output>
+  <time id="clock" class="readout clock" aria-label="Current local time"></time>
+
+  <button id="panel-toggle" class="panel-toggle" aria-label="Open garden controls" aria-expanded="false" aria-controls="controls">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg>
+  </button>
+
+  <aside id="controls" class="controls" aria-label="Garden controls" hidden>
+    <header class="panel-header"><span class="seed" aria-hidden="true">✳</span><h1>MiniTuin</h1><span class="panel-caption">a little outside</span></header>
+    <div class="control-group">
+      <div class="control"><div class="control-heading"><label for="animals">Animals</label><output id="animals-value" for="animals">4</output></div><input id="animals" type="range" min="0" max="10" step="1" value="4"></div>
+      <div class="control"><div class="control-heading"><label for="plants">Plants</label><output id="plants-value" for="plants">5</output></div><input id="plants" type="range" min="0" max="10" step="1" value="5"></div>
+    </div>
+    <div class="control-group">
+      <div class="control"><div class="control-heading"><label for="temperature">Temperature</label><output id="temperature-value" for="temperature">20°C</output></div><input id="temperature" type="range" min="-5" max="35" step="1" value="20"></div>
+      <div class="control"><div class="control-heading"><label for="wetness-input">Ground wetness</label><output id="wetness-value" for="wetness-input">0%</output></div><input id="wetness-input" type="range" min="0" max="50" step="1" value="0"></div>
+      <div class="control"><div class="control-heading"><label for="rain-input">Rain</label><output id="rain-value" for="rain-input">0%</output></div><input id="rain-input" type="range" min="0" max="100" step="1" value="0"></div>
+      <div class="control"><div class="control-heading"><label for="light">Light</label><output id="light-value" for="light">100%</output></div><input id="light" type="range" min="0" max="100" step="1" value="100"></div>
+    </div>
+    <button id="randomize" class="randomize" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h3c5 0 7 10 12 10h3m-4-4 4 4-4 4M3 17h3c2 0 3.5-1.5 5-4m2-2c1.5-2.5 3-4 5-4h3m-4-4 4 4-4 4"/></svg>
+      Randomize variables
+    </button>
+    <div class="display-options">
+      <label class="switch-row" for="show-temperature"><span>Show temperature</span><input id="show-temperature" type="checkbox" checked role="switch"><span class="switch" aria-hidden="true"></span></label>
+      <label class="switch-row" for="show-clock"><span>Show clock</span><input id="show-clock" type="checkbox" checked role="switch"><span class="switch" aria-hidden="true"></span></label>
+    </div>
+  </aside>
+</body>
+</html>

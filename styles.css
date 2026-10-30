@@ -1,0 +1,55 @@
+:root { color-scheme: light; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #243b30; --accent: #57735a; }
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { background: #25392d; }
+button, input { font: inherit; }
+[hidden] { display: none !important; }
+#garden, .backyard, #sprites, #rain, #shade { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
+#garden { isolation: isolate; }
+.backyard { background: url("assets/backgyard.png") center bottom / cover no-repeat; z-index: 0; }
+#wetness { position: absolute; left: 0; right: 0; bottom: 0; background: #308bdd; opacity: 0; z-index: 1; pointer-events: none; }
+#sprites { z-index: 2; }
+.sprite { position: absolute; pointer-events: none; will-change: transform; }
+.sprite img { position: absolute; max-width: none; user-select: none; pointer-events: none; }
+#bee { position: absolute; left: 0; top: 0; width: 48px; height: auto; z-index: 3; pointer-events: none; will-change: transform; }
+#rain { z-index: 4; }
+#shade { background: #061126; opacity: 0; z-index: 5; }
+.readout { position: fixed; z-index: 10; top: max(26px, env(safe-area-inset-top)); color: #fffdf4; line-height: 1; font-variant-numeric: tabular-nums; text-shadow: 0 1px 12px #15241b85, 0 1px 3px #15241b50; user-select: none; }
+.temperature { left: max(30px, env(safe-area-inset-left)); font-size: 32px; font-weight: 450; letter-spacing: -.06em; }
+.temperature span { font-size: 18px; margin-left: 4px; vertical-align: top; line-height: 1.5; letter-spacing: -.03em; }
+.clock { top: max(32px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); font-size: 19px; font-weight: 500; letter-spacing: .07em; }
+.panel-toggle { position: fixed; z-index: 12; top: max(20px, env(safe-area-inset-top)); right: max(24px, env(safe-area-inset-right)); display: grid; place-items: center; width: 44px; height: 44px; padding: 10px; border: 1px solid #fff8; border-radius: 50%; color: #2d4936; background: #f8f7ebea; box-shadow: 0 4px 20px #1d2b2420; cursor: pointer; transition: background .18s, transform .18s; }
+.panel-toggle:hover { background: #fffef7; transform: rotate(8deg); }
+.panel-toggle[aria-expanded="true"] { background: #e3ebd9; }
+.panel-toggle svg { width: 23px; height: 23px; }
+.panel-toggle circle { fill: #f4f5e9; }
+.controls { position: fixed; z-index: 11; top: max(78px, calc(env(safe-area-inset-top) + 58px)); right: max(24px, env(safe-area-inset-right)); width: 300px; max-width: calc(100vw - 32px); max-height: calc(100dvh - 98px); overflow-y: auto; overscroll-behavior: contain; padding: 24px; border: 1px solid #ffffffe0; border-radius: 21px; background: #f8f7efed; backdrop-filter: blur(20px); box-shadow: 0 16px 60px #142d2830, 0 3px 12px #142d2810; scrollbar-width: thin; }
+.panel-header { display: flex; align-items: center; gap: 8px; margin-bottom: 23px; }
+.panel-header h1 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -.04em; }
+.seed { color: #748d56; font-size: 24px; line-height: 1; }
+.panel-caption { margin-left: auto; color: #778073; font-size: 10px; letter-spacing: .01em; }
+.control-group + .control-group { padding-top: 19px; margin-top: 16px; border-top: 1px solid #3c58301a; }
+.control + .control { margin-top: 17px; }
+.control-heading { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 550; margin-bottom: 9px; }
+.control-heading output { color: #78806f; font-size: 11px; font-variant-numeric: tabular-nums; font-weight: 500; }
+input[type="range"] { appearance: none; -webkit-appearance: none; display: block; width: 100%; height: 18px; margin: 0; cursor: pointer; background: transparent; --fill: 0%; }
+input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius: 9px; background: linear-gradient(to right, var(--accent) var(--fill), #dce0d2 var(--fill)); }
+input[type="range"]::-moz-range-track { height: 4px; border-radius: 9px; background: linear-gradient(to right, var(--accent) var(--fill), #dce0d2 var(--fill)); }
+input[type="range"]::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; margin-top: -5.5px; border: 3px solid #fafbf3; border-radius: 50%; background: var(--accent); box-shadow: 0 1px 5px #243f352b; }
+input[type="range"]::-moz-range-thumb { width: 9px; height: 9px; border: 3px solid #fafbf3; border-radius: 50%; background: var(--accent); box-shadow: 0 1px 5px #243f352b; }
+.randomize { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; min-height: 38px; margin-top: 20px; padding: 10px 12px; border: 1px solid #57735a22; border-radius: 10px; background: #e3ebd9; color: #39533e; font-size: 12px; font-weight: 550; cursor: pointer; transition: background .15s; }
+.randomize:hover { background: #d6e2c8; }
+.randomize:active { background: #cad9bb; }
+.randomize svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.display-options { padding-top: 19px; margin-top: 17px; border-top: 1px solid #3c58301a; }
+.switch-row { display: flex; align-items: center; justify-content: space-between; position: relative; gap: 20px; font-size: 11px; color: #5a6959; cursor: pointer; min-height: 25px; }
+.switch-row + .switch-row { margin-top: 10px; }
+.switch-row input { position: absolute; right: 0; width: 30px; height: 18px; opacity: 0; cursor: pointer; }
+.switch { width: 29px; height: 17px; border-radius: 20px; background: #ced5c6; transition: background .15s; flex: 0 0 auto; }
+.switch::after { content: ""; display: block; width: 11px; height: 11px; margin: 3px; border-radius: 50%; background: #fffef6; box-shadow: 0 1px 3px #233b3022; transition: transform .15s; }
+input:checked + .switch { background: var(--accent); }
+input:checked + .switch::after { transform: translateX(12px); }
+:focus-visible { outline: 2px solid #a6ba83; outline-offset: 5px; }
+.switch-row input:focus-visible + .switch { outline: 2px solid #57735a; outline-offset: 4px; }
+@media (max-width: 480px) { .temperature { left: 20px; top: 25px; font-size: 28px; } .clock { font-size: 17px; top: 31px; } .panel-toggle { right: 16px; top: 18px; } .controls { right: 16px; top: 74px; padding: 21px; } }
+@media (prefers-reduced-motion: reduce) { *, *::after { transition: none !important; } }
